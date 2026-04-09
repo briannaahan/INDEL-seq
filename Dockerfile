@@ -10,7 +10,9 @@ RUN apt install -y build-essential \
                     git \
                     python3-pandas \
                     cutadapt \
-                    emboss
+                    emboss \
+                    python3 \
+                    python3-h5py
 
 #Install fastq-multx
 RUN cd /opt/ && git clone https://github.com/brwnj/fastq-multx && cd fastq-multx && make
@@ -18,3 +20,8 @@ RUN cd /opt/ && git clone https://github.com/brwnj/fastq-multx && cd fastq-multx
 #Install PEAR
 COPY pear-0.9.11-linux-x86_64.tar.gz /opt/
 RUN cd /opt/ && tar -xvf /opt/pear-0.9.11-linux-x86_64.tar.gz
+
+#Install ReapeatMasker
+COPY rmblast-2.14.0+-x64-linux.tar.gz /opt/
+RUN cd /opt/ && tar zxvf rmblast-2.14.0+-x64-linux.tar.gz
+COPY trf409.linux64 /opt/
